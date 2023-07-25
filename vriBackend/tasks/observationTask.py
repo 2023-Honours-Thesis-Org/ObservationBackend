@@ -16,12 +16,16 @@ celery.conf.broker_url = os.environ.get('CELERY_BROKER_URL')
 celery.conf.result_backend = os.environ.get('CELERY_RESULT_BACKEND')
 
 @celery.task(name='vri')
-def conduct_observation(options: dict):
+def conduct_observation(arrays):
     obsMan = observationManager(verbose=True, debug=True)
     obsMan.get_available_arrays()
 
-    obsMan.select_array(key=options['array'],
-                        haStart=options['start'],
-                        haEnd=options['end'],
-                        sampRate_s=options['sampleRate'])
+    for array in arrays:
+
+        obsMan.select_array(key=array['array'],
+                            haStart=array['start'],
+                            haEnd=array['end'],
+                            sampRate_s=array['sampleRate'])
+    
+
     return "doing task"
