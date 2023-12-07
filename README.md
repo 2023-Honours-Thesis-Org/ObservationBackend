@@ -1,7 +1,7 @@
 # Credits
 I'd like to acknowlegde the increadible work done by developers of [firendlyVRI](https://github.com/crpurcell/friendlyVRI),
-Cormac R. Prucell (@crpurcell) & Roy Truelove, backend logic and functions used to generate simulation images are from 
-their project an was wrapped around in python to work as a REST API that can interface
+Cormac R. Prucell ([@crpurcell](https://github.com/crpurcell)) & Roy Truelove, backend logic and functions used to generate
+simulation images are from their project an was wrapped around in python to work as a REST API that can interface
 
 **Harikesha Suresh**
 
