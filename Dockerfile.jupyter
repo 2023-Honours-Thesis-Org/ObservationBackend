@@ -1,0 +1,8 @@
+FROM jupyter/minimal-notebook
+
+RUN pip install requests
+
+WORKDIR /notebook
+COPY ./JupyterTesting/API_Test_Docker.ipynb /notebook/API_Test_Docker.ipynb
+
+EXPOSE 8888

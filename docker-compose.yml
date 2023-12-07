@@ -1,0 +1,38 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: friendlyVriApi
+    ports:
+      - "8080:8080"
+  worker:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      CELERY_BROKER_URL: redis://redis:6379
+      CELERY_RESULT_BACKEND: redis://redis:6379
+    command: celery --app vriBackend.tasks.observationTask worker --pool=solo --concurrency=1 --loglevel=info
+    depends_on:
+      - app
+      - redis
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+  jupyter:
+      build: 
+        context: .
+        dockerfile: Dockerfile.jupyter
+      ports:
+        - 4841:8888
+      container_name: friendlyVRIApiNotebook
+      command: "start-notebook.sh --NotebookApp.token="
+      depends_on:
+        - worker

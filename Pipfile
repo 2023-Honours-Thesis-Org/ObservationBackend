@@ -9,8 +9,11 @@ celery = "*"
 redis = "*"
 numpy = "*"
 matplotlib = "*"
+flask-sqlalchemy = "*"
+tk = "*"
 
 [dev-packages]
+ipykernel = "*"
 
 [requires]
 python_version = "3.11"
